@@ -43,25 +43,25 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
+  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03"
+         FILE "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
+   "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist" TYPE EXECUTABLE FILES "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/lab03")
-  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
+file(INSTALL DESTINATION "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist" TYPE EXECUTABLE FILES "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/ass1")
+  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/ass1")
     endif()
   endif()
 endif()

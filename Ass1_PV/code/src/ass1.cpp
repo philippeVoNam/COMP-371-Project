@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <vector>
 #include <list>
 
 #define GLEW_STATIC 1   // This allows linking with Static Library on Windows, without DLL
@@ -267,8 +268,62 @@ int createVertexBufferObject(bool multiColorFlag, vec3 colorVect)
     
     return vertexBufferObject;
 }
+void draw_matrix(mat4 matrix, GLuint worldMatrixLocation){
+    glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &matrix[0][0]);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+}
 
-void seven_seg_display(GLuint worldMatrixLocation, int segFlags[7], int x, int y, int z){
+void draw_model(std::vector< mat4 > matrixList, GLuint worldMatrixLocation){
+    // Declaring iterator to a vector 
+    std::vector< mat4 >::iterator ptr; 
+      
+    // Displaying vector elements using begin() and end() 
+    for (ptr = matrixList.begin(); ptr < matrixList.end(); ptr++){
+        draw_matrix(*ptr, worldMatrixLocation);
+    }
+}
+
+void draw_models(std::vector< std::vector< mat4 >> matrixLists, GLuint worldMatrixLocation){
+    // Declaring iterator to a vector 
+    std::vector<std::vector< mat4 >>::iterator ptr; 
+      
+    // Displaying vector elements using begin() and end() 
+    for (ptr = matrixLists.begin(); ptr < matrixLists.end(); ptr++){
+        draw_model(*ptr, worldMatrixLocation);
+    }
+}
+
+std::vector< mat4 > apply_transform_2_model(std::vector< mat4 > matrixList, mat4 matrixTransform){
+    // Declaring iterator to a vector 
+    std::vector< mat4 >::iterator ptr; 
+
+    std::vector< mat4 > matrixListTransformed;
+
+    // Displaying vector elements using begin() and end() 
+    for (ptr = matrixList.begin(); ptr < matrixList.end(); ptr++){
+        mat4 matrixTransformed = matrixTransform * *ptr;
+        matrixListTransformed.push_back(matrixTransformed);
+    }
+
+    return matrixListTransformed;
+}
+
+std::vector< std::vector< mat4 > > apply_transform_2_models(std::vector< std::vector< mat4 > > matrixLists, mat4 matrixTransform){
+    // Declaring iterator to a vector 
+    std::vector<std::vector< mat4 >>::iterator ptr; 
+
+    std::vector< std::vector< mat4 > > matrixListsTransformed;
+
+    // Displaying vector elements using begin() and end() 
+    for (ptr = matrixLists.begin(); ptr < matrixLists.end(); ptr++){
+        std::vector<mat4> matrixListTransformed = apply_transform_2_model(*ptr, matrixTransform);
+        matrixListsTransformed.push_back(matrixListTransformed);
+    }
+
+    return matrixListsTransformed;
+}
+
+std::vector< mat4 > seven_seg_model(GLuint worldMatrixLocation, int segFlags[7]){
 
     float width = 0.1f;
     float depth = 0.1f;
@@ -276,62 +331,80 @@ void seven_seg_display(GLuint worldMatrixLocation, int segFlags[7], int x, int y
     float gridUnit = 0.2f;
 
     float height = gridUnit * 3;
+
+    std::vector< mat4 > matrixList;
     
     if(segFlags[0] == 1){
         // a
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, height * 2 , 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[1] == 1){
         // b
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(height/2, height + (height/2), 0.0f))  * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[2] == 1){
         // c
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(height/2, height/2, 0.0f))  * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[3] == 1){
         // d
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[4] == 1){
         // e
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(- height/2, height/2, 0.0f))  * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[5] == 1){
         // f
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(- height/2, height + (height/2), 0.0f))  * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
 
     if(segFlags[6] == 1){
         // g
         mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, height, 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(width, height, depth));
-        pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //pillarWorldMatrix = translate(mat4(1.0f), vec3((gridUnit * x), (gridUnit * y), (gridUnit * z))) * pillarWorldMatrix;
+        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        matrixList.push_back(pillarWorldMatrix);
     }
+
+    return matrixList;
 }
 
 
@@ -512,18 +585,40 @@ int main(int argc, char*argv[])
         glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
 
         // Draw Letters
+        std::vector<mat4> matrixList;
+        std::vector<mat4> matrixListTransformed;
+        std::vector<std::vector< mat4 >> letter_id_matrix;
+        mat4 translateMatrix;
+
         int segP[] = {1,1,0,0,1,1,1};
-        seven_seg_display(worldMatrixLocation, segP, 5,0,0);
+        matrixList = seven_seg_model(worldMatrixLocation, segP);
+        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 5), (gridUnit * 0), (gridUnit * 0)));
+        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+        letter_id_matrix.push_back(matrixListTransformed);
 
         int segE[] = {1,0,0,1,1,1,1};
-        seven_seg_display(worldMatrixLocation, segE, 10,0,0);
+        matrixList = seven_seg_model(worldMatrixLocation, segE);
+        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 10), (gridUnit * 0), (gridUnit * 0)));
+        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+        letter_id_matrix.push_back(matrixListTransformed);
 
         // Draw ID
         int seg2[] = {1,1,0,1,1,0,1};
-        seven_seg_display(worldMatrixLocation, seg2, 17,0,0);
+        matrixList = seven_seg_model(worldMatrixLocation, seg2);
+        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 17), (gridUnit * 0), (gridUnit * 0)));
+        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+        letter_id_matrix.push_back(matrixListTransformed);
 
         int seg8[] = {1,1,1,1,1,1,1};
-        seven_seg_display(worldMatrixLocation, seg8, 22,0,0);
+        matrixList = seven_seg_model(worldMatrixLocation, seg8);
+        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 22), (gridUnit * 0), (gridUnit * 0)));
+        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+        letter_id_matrix.push_back(matrixListTransformed);
+
+        // Move Letter/ID Model
+        mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        letter_id_matrix = apply_transform_2_models(letter_id_matrix, rotateMatrix);
+        draw_models(letter_id_matrix, worldMatrixLocation);
 
         //mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.2f, 5.0f, 0.2f));
         //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);

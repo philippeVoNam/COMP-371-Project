@@ -174,7 +174,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/lab03.dir/DependInfo.cmake"
+  "CMakeFiles/ass1.dir/DependInfo.cmake"
   "_deps/thirdparty-glew-build/CMakeFiles/uninstall.dir/DependInfo.cmake"
   "_deps/thirdparty-glew-build/CMakeFiles/visualinfo.dir/DependInfo.cmake"
   "_deps/thirdparty-glew-build/CMakeFiles/glewinfo.dir/DependInfo.cmake"

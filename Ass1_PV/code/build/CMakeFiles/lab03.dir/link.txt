@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/lab03.dir/src/lab03.cpp.o -o lab03  lib/libGLEWd.a _deps/thirdparty-glfw-build/src/libglfw3.a /usr/lib/libGLX.so /usr/lib/libOpenGL.so /usr/lib/libOpenGL.so /usr/lib/libGLX.so /usr/lib/libGLU.so /usr/lib/librt.so -lm -ldl /usr/lib/libX11.so -lpthread 

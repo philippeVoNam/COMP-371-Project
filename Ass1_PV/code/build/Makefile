@@ -176,17 +176,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lab03
+# Target rules for targets named ass1
 
 # Build rule for target.
-lab03: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab03
-.PHONY : lab03
+ass1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ass1
+.PHONY : ass1
 
 # fast build rule for target.
-lab03/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/build
-.PHONY : lab03/fast
+ass1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/build
+.PHONY : ass1/fast
 
 #=============================================================================
 # Target rules for targets named uninstall
@@ -656,32 +656,32 @@ docs/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build.make _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build
 .PHONY : docs/fast
 
-src/lab03.o: src/lab03.cpp.o
+src/ass1.o: src/ass1.cpp.o
 
-.PHONY : src/lab03.o
+.PHONY : src/ass1.o
 
 # target to build an object file
-src/lab03.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/src/lab03.cpp.o
-.PHONY : src/lab03.cpp.o
+src/ass1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/src/ass1.cpp.o
+.PHONY : src/ass1.cpp.o
 
-src/lab03.i: src/lab03.cpp.i
+src/ass1.i: src/ass1.cpp.i
 
-.PHONY : src/lab03.i
+.PHONY : src/ass1.i
 
 # target to preprocess a source file
-src/lab03.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/src/lab03.cpp.i
-.PHONY : src/lab03.cpp.i
+src/ass1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/src/ass1.cpp.i
+.PHONY : src/ass1.cpp.i
 
-src/lab03.s: src/lab03.cpp.s
+src/ass1.s: src/ass1.cpp.s
 
-.PHONY : src/lab03.s
+.PHONY : src/ass1.s
 
 # target to generate assembly for a file
-src/lab03.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/src/lab03.cpp.s
-.PHONY : src/lab03.cpp.s
+src/ass1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/src/ass1.cpp.s
+.PHONY : src/ass1.cpp.s
 
 # Help Target
 help:
@@ -697,6 +697,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... docs"
 	@echo "... uninstall"
+	@echo "... ass1"
 	@echo "... boing"
 	@echo "... clipboard"
 	@echo "... cursor"
@@ -714,7 +715,6 @@ help:
 	@echo "... iconify"
 	@echo "... inputlag"
 	@echo "... joysticks"
-	@echo "... lab03"
 	@echo "... monitors"
 	@echo "... msaa"
 	@echo "... offscreen"
@@ -732,9 +732,9 @@ help:
 	@echo "... visualinfo"
 	@echo "... wave"
 	@echo "... windows"
-	@echo "... src/lab03.o"
-	@echo "... src/lab03.i"
-	@echo "... src/lab03.s"
+	@echo "... src/ass1.o"
+	@echo "... src/ass1.i"
+	@echo "... src/ass1.s"
 .PHONY : help
 
 

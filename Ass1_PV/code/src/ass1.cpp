@@ -1,9 +1,3 @@
-//
-// COMP 371 Labs Framework
-//
-// Created by Nicolas Bergeron on 20/06/2019.
-//
-
 #include <iostream>
 #include <cstring>
 #include <vector>
@@ -19,9 +13,25 @@
 #include <glm/gtc/matrix_transform.hpp> // include this to create transformation matrices
 #include <glm/common.hpp>
 
-
 using namespace glm;
 using namespace std;
+
+// Structs.
+struct LetterIDModel {
+    std::vector<std::vector< mat4 >> m_letter_id_matrix;
+    std::vector<std::vector< mat4 >> og_letter_id_matrix;
+
+    // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
+    // hence why we have a og matrix
+    
+    // params
+    float scale = 1.0f;
+
+    LetterIDModel(std::vector<std::vector< mat4 >> letter_id_matrix){
+        m_letter_id_matrix = letter_id_matrix;
+        og_letter_id_matrix = letter_id_matrix;
+    }
+};
 
 const char* getVertexShaderSource()
 {
@@ -501,6 +511,62 @@ int main(int argc, char*argv[])
     // Container for projectiles to be implemented in tutorial
     //list<Projectile> projectileList;
     
+    // Input Parameters init.
+    float gridUnit = 0.2f;
+
+    int numLetterID = 5;
+    int focusLetterID = 0;
+    float scaleLetterID = 1.0f;
+
+    GLuint worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
+
+    int vbo;
+
+    // Draw Letters and ID
+    // Draw geometry color
+    vec3 dummyVect = vec3(0.0f, 0.0f, 1.0f);
+    //int vbo = createVertexBufferObject(true, dummyVect);
+    //glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+    // Draw Letters
+    std::vector<mat4> matrixList;
+    std::vector<mat4> matrixListTransformed;
+    std::vector<std::vector< mat4 >> letter_id_matrix;
+    mat4 translateMatrix;
+
+    int segP[] = {1,1,0,0,1,1,1};
+    matrixList = seven_seg_model(worldMatrixLocation, segP);
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 5), (gridUnit * 0), (gridUnit * 0)));
+    matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+    letter_id_matrix.push_back(matrixListTransformed);
+
+    int segE[] = {1,0,0,1,1,1,1};
+    matrixList = seven_seg_model(worldMatrixLocation, segE);
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 10), (gridUnit * 0), (gridUnit * 0)));
+    matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+    letter_id_matrix.push_back(matrixListTransformed);
+
+    // Draw ID
+    int seg2[] = {1,1,0,1,1,0,1};
+    matrixList = seven_seg_model(worldMatrixLocation, seg2);
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 17), (gridUnit * 0), (gridUnit * 0)));
+    matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+    letter_id_matrix.push_back(matrixListTransformed);
+
+    int seg8[] = {1,1,1,1,1,1,1};
+    matrixList = seven_seg_model(worldMatrixLocation, seg8);
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 22), (gridUnit * 0), (gridUnit * 0)));
+    matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
+    letter_id_matrix.push_back(matrixListTransformed);
+
+    // List of Letter/ID
+    std::vector< LetterIDModel > list_letter_id;
+    for(int i = 0; i < numLetterID; i++){
+        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 5 * i), (gridUnit * 0), (gridUnit * 0)));
+        std::vector<std::vector< mat4 >> new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix);
+        LetterIDModel model = LetterIDModel(new_letter_id_matrix);
+        list_letter_id.push_back(model);
+    }
     
     // Entering Main Loop
     while(!glfwWindowShouldClose(window))
@@ -521,9 +587,7 @@ int main(int argc, char*argv[])
         glBindBuffer(GL_ARRAY_BUFFER, w_vbo); // FIXME -> not sure if this is good
 
         // Draw grid
-        float gridUnit = 0.2f;
         int gridSize = 128;
-        GLuint worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
         for (int i=0; i<(gridSize/2); ++i)
         {
             mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + (i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
@@ -553,7 +617,7 @@ int main(int argc, char*argv[])
         float lengthAxis = gridUnit * 7;
 
         vec3 greenVect = vec3(0.0f, 1.0f, 0.0f);
-        int vbo = createVertexBufferObject(false, greenVect);
+        vbo = createVertexBufferObject(false, greenVect);
         glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
         
         mat4 yAxisMatrix = translate(mat4(1.0f), vec3(0.0f , lengthAxis/2, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
@@ -578,86 +642,16 @@ int main(int argc, char*argv[])
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &zAxisMatrix[0][0]);
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
-        // Draw Letters and ID
-        // Draw geometry color
-        vec3 dummyVect = vec3(0.0f, 0.0f, 1.0f);
+        // Scale Letter/ID
+        mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
+        list_letter_id[focusLetterID].m_letter_id_matrix = apply_transform_2_models(list_letter_id[focusLetterID].og_letter_id_matrix, scaleMatrix); // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
+
+        //// Draw the Letter/ID list
         vbo = createVertexBufferObject(true, dummyVect);
         glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
-
-        // Draw Letters
-        std::vector<mat4> matrixList;
-        std::vector<mat4> matrixListTransformed;
-        std::vector<std::vector< mat4 >> letter_id_matrix;
-        mat4 translateMatrix;
-
-        int segP[] = {1,1,0,0,1,1,1};
-        matrixList = seven_seg_model(worldMatrixLocation, segP);
-        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 5), (gridUnit * 0), (gridUnit * 0)));
-        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
-        letter_id_matrix.push_back(matrixListTransformed);
-
-        int segE[] = {1,0,0,1,1,1,1};
-        matrixList = seven_seg_model(worldMatrixLocation, segE);
-        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 10), (gridUnit * 0), (gridUnit * 0)));
-        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
-        letter_id_matrix.push_back(matrixListTransformed);
-
-        // Draw ID
-        int seg2[] = {1,1,0,1,1,0,1};
-        matrixList = seven_seg_model(worldMatrixLocation, seg2);
-        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 17), (gridUnit * 0), (gridUnit * 0)));
-        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
-        letter_id_matrix.push_back(matrixListTransformed);
-
-        int seg8[] = {1,1,1,1,1,1,1};
-        matrixList = seven_seg_model(worldMatrixLocation, seg8);
-        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 22), (gridUnit * 0), (gridUnit * 0)));
-        matrixListTransformed = apply_transform_2_model(matrixList, translateMatrix);
-        letter_id_matrix.push_back(matrixListTransformed);
-
-        // Move Letter/ID Model
-        mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        letter_id_matrix = apply_transform_2_models(letter_id_matrix, rotateMatrix);
-        draw_models(letter_id_matrix, worldMatrixLocation);
-
-        //mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.2f, 5.0f, 0.2f));
-        //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-        //for (int i=0; i<1; ++i)
-        //{
-            //for (int j=0; j<1; ++j)
-            //{
-                //pillarWorldMatrix = translate(mat4(1.0f), vec3(- 100.0f + i * 10.0f, 5.0f, -100.0f + j * 10.0f)) * scale(mat4(1.0f), vec3(1.0f, 10.0f, 1.0f));
-                //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-                //glDrawArrays(GL_TRIANGLES, 0, 36);
-                
-                //pillarWorldMatrix = translate(mat4(1.0f), vec3(- 100.0f + i * 10.0f, 0.55f, -100.0f + j * 10.0f)) * rotate(mat4(1.0f), radians(180.0f), vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(1.1f, 1.1f, 1.1f));
-                //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
-                //glDrawArrays(GL_TRIANGLES, 0, 36);
-            //}
-        //}
-        
-        // @TODO 3 - Update and draw projectiles
-        // ...
-
-        
-        // Spinning cube at camera position
-        spinningCubeAngle += 180.0f * dt;
-        
-        // @TODO 7 - Draw in view space for first person camera
-        
-        {
-            // In third person view, let's draw the spinning cube in world space, like any other models
-            mat4 spinningCubeWorldMatrix = translate(mat4(1.0f), cameraPosition) *
-                                           rotate(mat4(1.0f), radians(spinningCubeAngle), vec3(0.0f, 1.0f, 0.0f)) *
-                                           scale(mat4(1.0f), vec3(0.1f, 0.1f, 0.1f));
-            
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &spinningCubeWorldMatrix[0][0]);
+        for(int i = 0; i < numLetterID; i++){
+            draw_models(list_letter_id[i].m_letter_id_matrix, worldMatrixLocation);
         }
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        
         
         // End Frame
         glfwSwapBuffers(window);
@@ -667,16 +661,40 @@ int main(int argc, char*argv[])
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);
         
-        if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // move camera down
+        // Selecting Model
+        if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // scale down
         {
-            cameraFirstPerson = true;
+            focusLetterID = 0;
+        }
+        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) // scale up
+        {
+            focusLetterID = 1;
         }
 
-        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) // move camera down
+        if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) // scale down
         {
-            cameraFirstPerson = false;
+            focusLetterID = 2;
+        }
+        if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS) // scale up
+        {
+            focusLetterID = 3;
         }
 
+        if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS) // scale down
+        {
+            focusLetterID = 4;
+        }
+
+        // Scaling
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) // scale up
+        {
+            list_letter_id[focusLetterID].scale += 0.01f;
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS) // scale down
+        {
+            list_letter_id[focusLetterID].scale -= 0.01f;
+        }
         
         // This was solution for Lab02 - Moving camera exercise
         // We'll change this to be a first or third person camera
@@ -745,6 +763,7 @@ int main(int argc, char*argv[])
         {
             cameraPosition.z -= currentCameraSpeed * dt;
         }
+
       
         // TODO 6
         // Set the view matrix for first and third person cameras

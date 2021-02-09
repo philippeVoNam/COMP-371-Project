@@ -7,7 +7,7 @@
 - [X] create first and last letter or first name
 - [X] create first and last digits of student id
 - [ ] Place model in an arc 
-- [ ] Hierarchical modelling
+- [-] Hierarchical modelling
 - [ ] window 1024x768 + 2x buffering support
 - [ ] enable hidden surface removal
 - [ ] clean up code of any lab3 stuff

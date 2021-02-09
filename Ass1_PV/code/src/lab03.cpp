@@ -113,7 +113,7 @@ int compileAndLinkShaders()
 }
 
 
-int createVertexBufferObject(bool colorFlag)
+int createVertexBufferObject(bool multiColorFlag, vec3 colorVect)
 {
     vec3 whiteVect = vec3(1.0f, 1.0f, 1.0f);
     vec3 redVect = vec3(1.0f, 0.0f, 0.0f);
@@ -125,54 +125,54 @@ int createVertexBufferObject(bool colorFlag)
     vec3 pinkVect = vec3(1.0f, 0.0f, 1.0f);
 
     // Cube model
-    vec3 whiteVertexArray[] = {  // position,                            color
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
-        vec3(-0.5f,-0.5f, 0.5f), whiteVect,
-        vec3(-0.5f, 0.5f, 0.5f), whiteVect,
+    vec3 specifiedColorVertexArray[] = {  // position,                            color
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
+        vec3(-0.5f,-0.5f, 0.5f), colorVect,
+        vec3(-0.5f, 0.5f, 0.5f), colorVect,
         
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
-        vec3(-0.5f, 0.5f, 0.5f), whiteVect,
-        vec3(-0.5f, 0.5f,-0.5f), whiteVect,
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
+        vec3(-0.5f, 0.5f, 0.5f), colorVect,
+        vec3(-0.5f, 0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f,-0.5f), whiteVect,
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
-        vec3(-0.5f, 0.5f,-0.5f), whiteVect,
+        vec3( 0.5f, 0.5f,-0.5f), colorVect,
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
+        vec3(-0.5f, 0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f,-0.5f), whiteVect,
-        vec3( 0.5f,-0.5f,-0.5f), whiteVect,
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
+        vec3( 0.5f, 0.5f,-0.5f), colorVect,
+        vec3( 0.5f,-0.5f,-0.5f), colorVect,
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f,-0.5f, 0.5f), whiteVect,
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
-        vec3( 0.5f,-0.5f,-0.5f), whiteVect,
+        vec3( 0.5f,-0.5f, 0.5f), colorVect,
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
+        vec3( 0.5f,-0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f,-0.5f, 0.5f), whiteVect,
-        vec3(-0.5f,-0.5f, 0.5f), whiteVect,
-        vec3(-0.5f,-0.5f,-0.5f), whiteVect,
+        vec3( 0.5f,-0.5f, 0.5f), colorVect,
+        vec3(-0.5f,-0.5f, 0.5f), colorVect,
+        vec3(-0.5f,-0.5f,-0.5f), colorVect,
         
-        vec3(-0.5f, 0.5f, 0.5f), whiteVect,
-        vec3(-0.5f,-0.5f, 0.5f), whiteVect,
-        vec3( 0.5f,-0.5f, 0.5f), whiteVect,
+        vec3(-0.5f, 0.5f, 0.5f), colorVect,
+        vec3(-0.5f,-0.5f, 0.5f), colorVect,
+        vec3( 0.5f,-0.5f, 0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f, 0.5f), whiteVect,
-        vec3(-0.5f, 0.5f, 0.5f), whiteVect,
-        vec3( 0.5f,-0.5f, 0.5f), whiteVect,
+        vec3( 0.5f, 0.5f, 0.5f), colorVect,
+        vec3(-0.5f, 0.5f, 0.5f), colorVect,
+        vec3( 0.5f,-0.5f, 0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f, 0.5f), whiteVect,
-        vec3( 0.5f,-0.5f,-0.5f), whiteVect,
-        vec3( 0.5f, 0.5f,-0.5f), whiteVect,
+        vec3( 0.5f, 0.5f, 0.5f), colorVect,
+        vec3( 0.5f,-0.5f,-0.5f), colorVect,
+        vec3( 0.5f, 0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f,-0.5f,-0.5f), whiteVect,
-        vec3( 0.5f, 0.5f, 0.5f), whiteVect,
-        vec3( 0.5f,-0.5f, 0.5f), whiteVect,
+        vec3( 0.5f,-0.5f,-0.5f), colorVect,
+        vec3( 0.5f, 0.5f, 0.5f), colorVect,
+        vec3( 0.5f,-0.5f, 0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f, 0.5f), whiteVect,
-        vec3( 0.5f, 0.5f,-0.5f), whiteVect,
-        vec3(-0.5f, 0.5f,-0.5f), whiteVect,
+        vec3( 0.5f, 0.5f, 0.5f), colorVect,
+        vec3( 0.5f, 0.5f,-0.5f), colorVect,
+        vec3(-0.5f, 0.5f,-0.5f), colorVect,
         
-        vec3( 0.5f, 0.5f, 0.5f), whiteVect,
-        vec3(-0.5f, 0.5f,-0.5f), whiteVect,
-        vec3(-0.5f, 0.5f, 0.5f), whiteVect
+        vec3( 0.5f, 0.5f, 0.5f), colorVect,
+        vec3(-0.5f, 0.5f,-0.5f), colorVect,
+        vec3(-0.5f, 0.5f, 0.5f), colorVect
     };
 
     vec3 colorVertexArray[] = {  // position,                            color
@@ -226,11 +226,11 @@ int createVertexBufferObject(bool colorFlag)
     };
 
     vec3 vertexArray[72] = {};
-    if(colorFlag){
+    if(multiColorFlag){
         std::memcpy(vertexArray, colorVertexArray, sizeof(colorVertexArray));
     }
     else{
-        std::memcpy(vertexArray, whiteVertexArray, sizeof(whiteVertexArray));
+        std::memcpy(vertexArray, specifiedColorVertexArray, sizeof(specifiedColorVertexArray));
     }
     
     // Create a vertex array
@@ -270,11 +270,12 @@ int createVertexBufferObject(bool colorFlag)
 
 void seven_seg_display(GLuint worldMatrixLocation, int segFlags[7], int x, int y, int z){
 
-    float height = 1.5f;
-    float width = 0.2f;
-    float depth = 0.2f;
+    float width = 0.1f;
+    float depth = 0.1f;
 
     float gridUnit = 0.2f;
+
+    float height = gridUnit * 3;
     
     if(segFlags[0] == 1){
         // a
@@ -408,7 +409,7 @@ int main(int argc, char*argv[])
     
     
     // Define and upload geometry to the GPU here ...
-    int w_vbo = createVertexBufferObject(false);
+    //int w_vbo = createVertexBufferObject(false);
     
     // For frame time
     float lastFrameTime = glfwGetTime();
@@ -442,7 +443,8 @@ int main(int argc, char*argv[])
         glClear(GL_COLOR_BUFFER_BIT);
         
         // Draw geometry
-        int w_vbo = createVertexBufferObject(false);
+        vec3 whiteVect = vec3(1.0f, 1.0f, 1.0f);
+        int w_vbo = createVertexBufferObject(false, whiteVect);
         glBindBuffer(GL_ARRAY_BUFFER, w_vbo); // FIXME -> not sure if this is good
 
         // Draw grid
@@ -472,24 +474,56 @@ int main(int argc, char*argv[])
             glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
         }
+        
+        // Draw Axis
+        // Draw geometry color
+        float lengthAxis = gridUnit * 7;
 
-        // Draw geometry
-        int c_vbo = createVertexBufferObject(true);
-        glBindBuffer(GL_ARRAY_BUFFER, c_vbo); // FIXME -> not sure if this is good
+        vec3 greenVect = vec3(0.0f, 1.0f, 0.0f);
+        int vbo = createVertexBufferObject(false, greenVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+        
+        mat4 yAxisMatrix = translate(mat4(1.0f), vec3(0.0f , lengthAxis/2, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
+        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &yAxisMatrix[0][0]);
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        // Draw geometry color
+        vec3 redVect = vec3(1.0f, 0.0f, 0.0f);
+        vbo = createVertexBufferObject(false, redVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+        mat4 xAxisMatrix = translate(mat4(1.0f), vec3(lengthAxis/2 , 0.0f, 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
+        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &xAxisMatrix[0][0]);
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        // Draw geometry color
+        vec3 blueVect = vec3(0.0f, 0.0f, 1.0f);
+        vbo = createVertexBufferObject(false, blueVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+        mat4 zAxisMatrix = translate(mat4(1.0f), vec3(0.0f , 0.0f, lengthAxis/2)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
+        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &zAxisMatrix[0][0]);
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+        // Draw Letters and ID
+        // Draw geometry color
+        vec3 dummyVect = vec3(0.0f, 0.0f, 1.0f);
+        vbo = createVertexBufferObject(true, dummyVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
 
         // Draw Letters
         int segP[] = {1,1,0,0,1,1,1};
-        seven_seg_display(worldMatrixLocation, segP, 0,0,0);
+        seven_seg_display(worldMatrixLocation, segP, 5,0,0);
 
         int segE[] = {1,0,0,1,1,1,1};
         seven_seg_display(worldMatrixLocation, segE, 10,0,0);
 
         // Draw ID
         int seg2[] = {1,1,0,1,1,0,1};
-        seven_seg_display(worldMatrixLocation, seg2, 25,0,0);
+        seven_seg_display(worldMatrixLocation, seg2, 17,0,0);
 
         int seg8[] = {1,1,1,1,1,1,1};
-        seven_seg_display(worldMatrixLocation, seg8, 35,0,0);
+        seven_seg_display(worldMatrixLocation, seg8, 22,0,0);
 
         //mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.2f, 5.0f, 0.2f));
         //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);

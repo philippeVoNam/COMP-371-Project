@@ -1,0 +1,3 @@
+repository='external project URL'
+module='/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip'
+tag=''

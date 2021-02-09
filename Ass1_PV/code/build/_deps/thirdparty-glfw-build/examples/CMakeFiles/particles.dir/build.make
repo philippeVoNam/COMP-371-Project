@@ -62,10 +62,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code
+CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build
+CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build
 
 # Include any dependencies generated for this target.
 include _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/depend.make
@@ -78,55 +78,55 @@ include _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/flags.make
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.o: _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/flags.make
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.o: _deps/thirdparty-glfw-src/examples/particles.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.o"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/particles.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/examples/particles.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.o"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/particles.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/examples/particles.c
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/particles.dir/particles.c.i"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/examples/particles.c > CMakeFiles/particles.dir/particles.c.i
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/examples/particles.c > CMakeFiles/particles.dir/particles.c.i
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/particles.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/particles.dir/particles.c.s"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/examples/particles.c -o CMakeFiles/particles.dir/particles.c.s
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/examples/particles.c -o CMakeFiles/particles.dir/particles.c.s
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o: _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/flags.make
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o: _deps/thirdparty-glfw-src/deps/tinycthread.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/tinycthread.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/tinycthread.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/particles.dir/__/deps/tinycthread.c.i"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c > CMakeFiles/particles.dir/__/deps/tinycthread.c.i
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c > CMakeFiles/particles.dir/__/deps/tinycthread.c.i
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/particles.dir/__/deps/tinycthread.c.s"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c -o CMakeFiles/particles.dir/__/deps/tinycthread.c.s
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/tinycthread.c -o CMakeFiles/particles.dir/__/deps/tinycthread.c.s
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.o: _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/flags.make
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.o: _deps/thirdparty-glfw-src/deps/getopt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.o"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/getopt.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/getopt.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.o"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/getopt.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/getopt.c
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/particles.dir/__/deps/getopt.c.i"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/getopt.c > CMakeFiles/particles.dir/__/deps/getopt.c.i
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/getopt.c > CMakeFiles/particles.dir/__/deps/getopt.c.i
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/getopt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/particles.dir/__/deps/getopt.c.s"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/getopt.c -o CMakeFiles/particles.dir/__/deps/getopt.c.s
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/getopt.c -o CMakeFiles/particles.dir/__/deps/getopt.c.s
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.o: _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/flags.make
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.o: _deps/thirdparty-glfw-src/deps/glad_gl.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.o"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/glad_gl.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.o"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/particles.dir/__/deps/glad_gl.c.o -c /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/particles.dir/__/deps/glad_gl.c.i"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c > CMakeFiles/particles.dir/__/deps/glad_gl.c.i
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c > CMakeFiles/particles.dir/__/deps/glad_gl.c.i
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/particles.dir/__/deps/glad_gl.c.s"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c -o CMakeFiles/particles.dir/__/deps/glad_gl.c.s
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/deps/glad_gl.c -o CMakeFiles/particles.dir/__/deps/glad_gl.c.s
 
 # Object files for target particles
 particles_OBJECTS = \
@@ -148,8 +148,8 @@ _deps/thirdparty-glfw-build/examples/particles: /usr/lib/libm.so
 _deps/thirdparty-glfw-build/examples/particles: /usr/lib/librt.so
 _deps/thirdparty-glfw-build/examples/particles: /usr/lib/libX11.so
 _deps/thirdparty-glfw-build/examples/particles: _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable particles"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/particles.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable particles"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/particles.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/build: _deps/thirdparty-glfw-build/examples/particles
@@ -157,10 +157,10 @@ _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/build: _deps/third
 .PHONY : _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/build
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/clean:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples && $(CMAKE_COMMAND) -P CMakeFiles/particles.dir/cmake_clean.cmake
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples && $(CMAKE_COMMAND) -P CMakeFiles/particles.dir/cmake_clean.cmake
 .PHONY : _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/clean
 
 _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/depend:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/examples /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/examples /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : _deps/thirdparty-glfw-build/examples/CMakeFiles/particles.dir/depend
 

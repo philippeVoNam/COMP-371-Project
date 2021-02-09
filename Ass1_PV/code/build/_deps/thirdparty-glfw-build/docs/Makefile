@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code
+CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build
+CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -145,14 +145,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/docs//CMakeFiles/progress.marks
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles 0
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/docs//CMakeFiles/progress.marks
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/clean
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/clean
 .PHONY : clean
 
 # The main clean target
@@ -162,22 +162,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/preinstall
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/preinstall
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/rule:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/rule
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/rule
 .PHONY : _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/rule
 
 # Convenience name for target.
@@ -187,7 +187,7 @@ docs: _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/rule
 
 # fast build rule for target.
 docs/fast:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(MAKE) $(MAKESILENT) -f _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build.make _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(MAKE) $(MAKESILENT) -f _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build.make _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build
 .PHONY : docs/fast
 
 # Help Target
@@ -214,6 +214,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

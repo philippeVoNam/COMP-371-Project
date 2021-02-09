@@ -11,9 +11,9 @@ project(thirdparty-glm-populate NONE)
 
 include(ExternalProject)
 ExternalProject_Add(thirdparty-glm-populate
-                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip"
-                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glm-src"
-                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glm-build"
+                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip"
+                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glm-src"
+                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glm-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

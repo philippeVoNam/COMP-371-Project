@@ -3,12 +3,12 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-if("/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip" STREQUAL "")
+if("/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip" STREQUAL "")
   message(FATAL_ERROR "LOCAL can't be empty")
 endif()
 
-if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip")
-  message(FATAL_ERROR "File not found: /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip")
+if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip")
+  message(FATAL_ERROR "File not found: /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip")
 endif()
 
 if("" STREQUAL "")
@@ -21,13 +21,13 @@ if("" STREQUAL "")
 endif()
 
 message(STATUS "verifying file...
-     file='/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip'")
+     file='/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip'")
 
-file("" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip" actual_value)
+file("" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip" actual_value)
 
 if(NOT "${actual_value}" STREQUAL "")
   message(FATAL_ERROR "error:  hash of
-  /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip
+  /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip
 does not match expected value
   expected: ''
     actual: '${actual_value}'

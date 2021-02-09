@@ -62,10 +62,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code
+CMAKE_SOURCE_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build
+CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build
 
 # Utility rule file for docs.
 
@@ -73,8 +73,8 @@ CMAKE_BINARY_DIR = /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/co
 include _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/progress.make
 
 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating HTML documentation"
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/docs && /usr/bin/doxygen
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating HTML documentation"
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/docs && /usr/bin/doxygen
 
 docs: _deps/thirdparty-glfw-build/docs/CMakeFiles/docs
 docs: _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build.make
@@ -87,10 +87,10 @@ _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build: docs
 .PHONY : _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/build
 
 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/clean:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/docs && $(CMAKE_COMMAND) -P CMakeFiles/docs.dir/cmake_clean.cmake
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/docs && $(CMAKE_COMMAND) -P CMakeFiles/docs.dir/cmake_clean.cmake
 .PHONY : _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/clean
 
 _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/depend:
-	cd /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src/docs /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/docs /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src/docs /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/docs /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : _deps/thirdparty-glfw-build/docs/CMakeFiles/docs.dir/depend
 

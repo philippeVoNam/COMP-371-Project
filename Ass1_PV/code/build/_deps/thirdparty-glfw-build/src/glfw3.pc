@@ -1,7 +1,7 @@
-prefix=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist
+prefix=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist
 exec_prefix=${prefix}
-includedir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/include
-libdir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lib
+includedir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/include
+libdir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lib
 
 Name: GLFW
 Description: A multi-platform library for OpenGL, window and input

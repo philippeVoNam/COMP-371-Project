@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-src/src/visualinfo.c" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/CMakeFiles/visualinfo.dir/__/__/src/visualinfo.c.o"
+  "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-src/src/visualinfo.c" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/CMakeFiles/visualinfo.dir/__/__/src/visualinfo.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -20,7 +20,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/CMakeFiles/glew.dir/DependInfo.cmake"
+  "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/CMakeFiles/glew.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

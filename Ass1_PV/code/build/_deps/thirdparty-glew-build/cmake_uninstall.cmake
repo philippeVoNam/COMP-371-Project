@@ -1,13 +1,13 @@
-if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
-endif(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
+if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
+endif(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/install_manifest.txt")
 
 if (NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set (CMAKE_INSTALL_PREFIX "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist")
+  set (CMAKE_INSTALL_PREFIX "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist")
 endif ()
  message(${CMAKE_INSTALL_PREFIX})
 
-file(READ "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build/install_manifest.txt" files)
+file(READ "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")

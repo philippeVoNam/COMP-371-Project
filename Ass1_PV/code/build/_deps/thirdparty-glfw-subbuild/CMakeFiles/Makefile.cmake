@@ -10,8 +10,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.19.3/CMakeSystem.cmake"
   "CMakeLists.txt"
   "thirdparty-glfw-populate-prefix/tmp/thirdparty-glfw-populate-cfgcmd.txt.in"
+  "/usr/share/cmake-3.19/Modules/CMakeDetermineSystem.cmake"
   "/usr/share/cmake-3.19/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake"
+  "/usr/share/cmake-3.19/Modules/CMakeSystem.cmake.in"
   "/usr/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake"
   "/usr/share/cmake-3.19/Modules/ExternalProject-verify.cmake.in"
@@ -29,6 +31,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/3.19.3/CMakeSystem.cmake"
   "thirdparty-glfw-populate-prefix/src/thirdparty-glfw-populate-stamp/thirdparty-glfw-populate-urlinfo.txt"
   "thirdparty-glfw-populate-prefix/src/thirdparty-glfw-populate-stamp/verify-thirdparty-glfw-populate.cmake"
   "thirdparty-glfw-populate-prefix/tmp/thirdparty-glfw-populate-cfgcmd.txt"

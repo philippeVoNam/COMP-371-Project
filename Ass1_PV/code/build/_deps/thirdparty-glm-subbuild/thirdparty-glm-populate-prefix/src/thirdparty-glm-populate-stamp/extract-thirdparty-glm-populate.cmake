@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glm-0.9.9.8.zip" ABSOLUTE)
-get_filename_component(directory "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glm-src" ABSOLUTE)
+get_filename_component(filename "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glm-0.9.9.8.zip" ABSOLUTE)
+get_filename_component(directory "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glm-src" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

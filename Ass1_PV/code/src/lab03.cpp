@@ -270,7 +270,7 @@ int createVertexBufferObject(bool colorFlag)
 
 void seven_seg_display(GLuint worldMatrixLocation, int segFlags[7], int x, int y, int z){
 
-    float height = 2.5f;
+    float height = 1.5f;
     float width = 0.2f;
     float depth = 0.2f;
 
@@ -446,18 +446,30 @@ int main(int argc, char*argv[])
         glBindBuffer(GL_ARRAY_BUFFER, w_vbo); // FIXME -> not sure if this is good
 
         // Draw grid
+        float gridUnit = 0.2f;
+        int gridSize = 128;
         GLuint worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
-        for (int i=0; i<128; ++i)
+        for (int i=0; i<(gridSize/2); ++i)
         {
-            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + i * 0.2f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, 1000.0f));
+            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + (i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
             glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
-
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
             // turn 90
-            groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + i * 0.2f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, 1000.0f));
+            groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
             glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+        }
 
+        for (int i=0; i<(gridSize/2); ++i)
+        {
+            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + (-i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
+            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
+            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+
+            // turn 90
+            groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (-i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
+            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
             glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
         }
 
@@ -469,8 +481,16 @@ int main(int argc, char*argv[])
         int segP[] = {1,1,0,0,1,1,1};
         seven_seg_display(worldMatrixLocation, segP, 0,0,0);
 
-        int seg1[] = {0,0,0,0,1,1,0};
-        seven_seg_display(worldMatrixLocation, seg1, 5,5,0);
+        int segE[] = {1,0,0,1,1,1,1};
+        seven_seg_display(worldMatrixLocation, segE, 10,0,0);
+
+        // Draw ID
+        int seg2[] = {1,1,0,1,1,0,1};
+        seven_seg_display(worldMatrixLocation, seg2, 25,0,0);
+
+        int seg8[] = {1,1,1,1,1,1,1};
+        seven_seg_display(worldMatrixLocation, seg8, 35,0,0);
+
         //mat4 pillarWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.2f, 5.0f, 0.2f));
         //glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &pillarWorldMatrix[0][0]);
         //glDrawArrays(GL_TRIANGLES, 0, 36);

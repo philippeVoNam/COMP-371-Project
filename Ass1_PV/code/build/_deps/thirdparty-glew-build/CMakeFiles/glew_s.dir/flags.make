@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DGLEW_NO_GLU -DGLEW_STATIC
 
-C_INCLUDES = -I/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-src/build/cmake/../../include
+C_INCLUDES = -I/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-src/build/cmake/../../include
 
 C_FLAGS = -g
 

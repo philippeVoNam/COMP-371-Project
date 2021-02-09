@@ -11,9 +11,9 @@ project(thirdparty-glew-populate NONE)
 
 include(ExternalProject)
 ExternalProject_Add(thirdparty-glew-populate
-                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glew-2.1.0.zip"
-                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-src"
-                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glew-build"
+                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glew-2.1.0.zip"
+                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-src"
+                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glew-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

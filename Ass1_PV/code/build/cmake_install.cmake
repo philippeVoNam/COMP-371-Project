@@ -1,8 +1,8 @@
-# Install script for directory: /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code
+# Install script for directory: /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist")
+  set(CMAKE_INSTALL_PREFIX "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,25 +43,25 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03")
+  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03"
+         FILE "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03")
+   "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist" TYPE EXECUTABLE FILES "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/lab03")
-  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03")
+file(INSTALL DESTINATION "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist" TYPE EXECUTABLE FILES "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/lab03")
+  if(EXISTS "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lab03")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lab03")
     endif()
   endif()
 endif()
@@ -79,5 +79,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

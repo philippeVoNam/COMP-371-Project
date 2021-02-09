@@ -1,6 +1,6 @@
-prefix=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist
+prefix=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist
 exec_prefix=${prefix}
-libdir=/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/dist/lib
+libdir=/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/dist/lib
 includedir=${prefix}/include
 
 Name: glew

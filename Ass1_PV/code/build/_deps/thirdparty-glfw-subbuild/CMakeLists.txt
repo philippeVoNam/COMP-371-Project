@@ -11,9 +11,9 @@ project(thirdparty-glfw-populate NONE)
 
 include(ExternalProject)
 ExternalProject_Add(thirdparty-glfw-populate
-                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip"
-                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-src"
-                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/build/_deps/thirdparty-glfw-build"
+                     "UPDATE_DISCONNECTED" "True" "URL" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip"
+                    SOURCE_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-src"
+                    BINARY_DIR          "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/build/_deps/thirdparty-glfw-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

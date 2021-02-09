@@ -3,12 +3,12 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-if("/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip" STREQUAL "")
+if("/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip" STREQUAL "")
   message(FATAL_ERROR "LOCAL can't be empty")
 endif()
 
-if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip")
-  message(FATAL_ERROR "File not found: /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip")
+if(NOT EXISTS "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip")
+  message(FATAL_ERROR "File not found: /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip")
 endif()
 
 if("" STREQUAL "")
@@ -21,13 +21,13 @@ if("" STREQUAL "")
 endif()
 
 message(STATUS "verifying file...
-     file='/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip'")
+     file='/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip'")
 
-file("" "/home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip" actual_value)
+file("" "/home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip" actual_value)
 
 if(NOT "${actual_value}" STREQUAL "")
   message(FATAL_ERROR "error:  hash of
-  /home/namv/Documents/School/Winter-2021/COMP-371/Lab/Lab03/code/thirdparty/glfw-3.3.2.zip
+  /home/namv/Documents/School/Winter-2021/COMP-371/Project/Ass1_PV/code/thirdparty/glfw-3.3.2.zip
 does not match expected value
   expected: ''
     actual: '${actual_value}'

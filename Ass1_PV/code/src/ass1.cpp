@@ -624,7 +624,6 @@ int main(int argc, char*argv[])
         mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
         mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[focusLetterID].x,list_letter_id[focusLetterID].y,list_letter_id[focusLetterID].z));
         mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[focusLetterID].angle), glm::vec3(0.0f, 1.0f, 0.0f));
-        list_letter_id[focusLetterID].m_letter_id_matrix = apply_transform_2_models(list_letter_id[focusLetterID].og_letter_id_matrix, moveMatrix * rotateMatrix * scaleMatrix); // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
 
         // World Rotations
         mat4 worldXRotateMatrix = rotate(glm::mat4(1.0f), glm::radians(worldAngleX), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -641,7 +640,13 @@ int main(int argc, char*argv[])
 
         // model letter/id rotations
         for(int i = 0; i < numLetterID; i++){
-            list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix);
+            if(i == focusLetterID){
+                // if the focused model -> do the additional transformations
+                list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
+            }
+            else{
+                list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix);
+            }
         }
 
         // ### DRAWING ###
@@ -812,6 +817,22 @@ int main(int argc, char*argv[])
         {
             worldAngleX = 0.0f;
             worldAngleY = 0.0f;
+        }
+
+        // Render modes
+        if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS) // move camera down
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS) // move camera down
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) // move camera down
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
 
         // This was solution for Lab02 - Moving camera exercise

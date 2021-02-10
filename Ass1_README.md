@@ -17,6 +17,6 @@
 - [X] u/j -> scale up/down the models
 - [X] w/a/s/d -> move up/down/rotate models
 - [X] 1-5 -> select model to move + camera to focus on that model
-- [ ] arrow keys + home -> rotate the WORLD itself -> camera stays in one location
+- [X] arrow keys + home -> rotate the WORLD itself -> camera stays in one location
 - [ ] p/l/t -> change render type (points/lines/triangle)
 - [ ] mouse -> pan/tilt camera + zoom in/our

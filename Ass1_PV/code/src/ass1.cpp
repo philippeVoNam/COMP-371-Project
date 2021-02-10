@@ -646,7 +646,7 @@ int main(int argc, char*argv[])
         glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &zAxisMatrix[0][0]);
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
 
-        // Scale Letter/ID
+        // Scale/Move/Rotate Letter/ID
         mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
         mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[focusLetterID].x,list_letter_id[focusLetterID].y,list_letter_id[focusLetterID].z));
         mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[focusLetterID].angle), glm::vec3(0.0f, 1.0f, 0.0f));

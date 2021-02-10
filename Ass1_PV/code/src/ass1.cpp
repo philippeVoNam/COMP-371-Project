@@ -26,6 +26,10 @@ struct LetterIDModel {
     
     // params
     float scale = 1.0f;
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+    float angle = 1.0f;
 
     LetterIDModel(std::vector<std::vector< mat4 >> letter_id_matrix){
         m_letter_id_matrix = letter_id_matrix;
@@ -644,7 +648,9 @@ int main(int argc, char*argv[])
 
         // Scale Letter/ID
         mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
-        list_letter_id[focusLetterID].m_letter_id_matrix = apply_transform_2_models(list_letter_id[focusLetterID].og_letter_id_matrix, scaleMatrix); // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
+        mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[focusLetterID].x,list_letter_id[focusLetterID].y,list_letter_id[focusLetterID].z));
+        mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[focusLetterID].angle), glm::vec3(0.0f, 1.0f, 0.0f));
+        list_letter_id[focusLetterID].m_letter_id_matrix = apply_transform_2_models(list_letter_id[focusLetterID].og_letter_id_matrix, moveMatrix * rotateMatrix * scaleMatrix); // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
 
         //// Draw the Letter/ID list
         vbo = createVertexBufferObject(true, dummyVect);
@@ -695,7 +701,49 @@ int main(int argc, char*argv[])
         {
             list_letter_id[focusLetterID].scale -= 0.01f;
         }
+
+        // Move Model
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) // move left
+        {
+            list_letter_id[focusLetterID].x -= 0.01f;
+        }
         
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) // move right
+        {
+            list_letter_id[focusLetterID].x += 0.01f;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) // move forward
+        {
+            list_letter_id[focusLetterID].z -= 0.01f;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) // move backwards
+        {
+            list_letter_id[focusLetterID].z += 0.01f;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) // rotate FIXME -> using Q,E instead of a,d
+        {
+            float angle = list_letter_id[focusLetterID].angle + 1.0f;
+
+            if(angle > 360.0f){
+                angle = 360.0f;
+            }
+
+            list_letter_id[focusLetterID].angle = angle;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) // rotate
+        {
+            float angle = list_letter_id[focusLetterID].angle - 1.0f;
+
+            if(angle < 0.0f){
+                angle = 0.0f;
+            }
+
+            list_letter_id[focusLetterID].angle = angle;
+        }
         // This was solution for Lab02 - Moving camera exercise
         // We'll change this to be a first or third person camera
         bool fastCam = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS;
@@ -744,22 +792,22 @@ int main(int argc, char*argv[])
         
         // @TODO 5 = use camera lookat and side vectors to update positions with ASDW
         // adjust code below
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) // move camera to the left
+        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) // move camera to the left
         {
             cameraPosition.x -= currentCameraSpeed * dt;
         }
         
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) // move camera to the right
+        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) // move camera to the right
         {
             cameraPosition.x += currentCameraSpeed * dt;
         }
         
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) // move camera up
+        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) // move camera up
         {
             cameraPosition.z += currentCameraSpeed * dt;
         }
         
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) // move camera down
+        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) // move camera down
         {
             cameraPosition.z -= currentCameraSpeed * dt;
         }

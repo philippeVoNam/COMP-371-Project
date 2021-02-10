@@ -14,9 +14,9 @@
 - [ ] write up the README.md install instructions
 
 ## Inputs
-- [ ] u/j -> scale up/down the models
-- [ ] w/a/s/d -> move up/down/rotate models
-- [ ] 1-5 -> select model to move + camera to focus on that model
+- [X] u/j -> scale up/down the models
+- [X] w/a/s/d -> move up/down/rotate models
+- [X] 1-5 -> select model to move + camera to focus on that model
 - [ ] arrow keys + home -> move camera
 - [ ] p/l/t -> change render type (points/lines/triangle)
 - [ ] mouse -> pan/tilt camera + zoom in/out

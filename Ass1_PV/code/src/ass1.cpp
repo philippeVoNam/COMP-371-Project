@@ -469,7 +469,7 @@ int main(int argc, char*argv[])
     vec3 cameraUp(0.0f, 1.0f, 0.0f);
     
     // Other camera parameters
-    float cameraSpeed = 1.0f;
+    float cameraSpeed = 5.0f;
     float cameraFastSpeed = 5 * cameraSpeed;
     float cameraHorizontalAngle = 90.0f;
     float cameraVerticalAngle = 0.0f;
@@ -478,13 +478,6 @@ int main(int argc, char*argv[])
     // Spinning cube at camera position
     float spinningCubeAngle = 0.0f;
     
-    // Set projection matrix for shader, this won't change
-    mat4 projectionMatrix = glm::perspective(70.0f,            // field of view in degrees
-                                             800.0f / 600.0f,  // aspect ratio
-                                             0.01f, 100.0f);   // near and far (near > 0)
-    
-    GLuint projectionMatrixLocation = glGetUniformLocation(shaderProgram, "projectionMatrix");
-    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Set initial view matrix
     mat4 viewMatrix = lookAt(cameraPosition,  // eye
@@ -525,6 +518,8 @@ int main(int argc, char*argv[])
     GLuint worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
     float worldAngleX = 0.0f;
     float worldAngleY = 0.0f;
+
+    float fov = 45.0f;
 
     int vbo;
 
@@ -835,18 +830,7 @@ int main(int argc, char*argv[])
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
 
-        // This was solution for Lab02 - Moving camera exercise
-        // We'll change this to be a first or third person camera
-        bool fastCam = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS;
-        float currentCameraSpeed = (fastCam) ? cameraFastSpeed : cameraSpeed;
-        
-        
-        // @TODO 4 - Calculate mouse motion dx and dy
-        //         - Update camera horizontal and vertical angle
-
-
-        // Please understand the code when you un-comment it!
-        /*
+        // Camera Input
         double mousePosX, mousePosY;
         glfwGetCursorPos(window, &mousePosX, &mousePosY);
         
@@ -855,11 +839,59 @@ int main(int argc, char*argv[])
         
         lastMousePosX = mousePosX;
         lastMousePosY = mousePosY;
+
+        // This was solution for Lab02 - Moving camera exercise
+        // We'll change this to be a first or third person camera
+        bool fastCam = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS;
+        float currentCameraSpeed = (fastCam) ? cameraFastSpeed : cameraSpeed;
+
+        int panSensitivity = 5; // reduce the sensibility of the panning to mouse movements
+        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+        {
+            if(dx < -panSensitivity){
+                cameraPosition.x += currentCameraSpeed * dt;
+            }
+            else if (dx > panSensitivity ){
+                cameraPosition.x -= currentCameraSpeed * dt;
+            }
+
+            if(dy < -panSensitivity ){
+                cameraPosition.z += currentCameraSpeed * dt;
+            }
+            else if (dy > panSensitivity ){
+                cameraPosition.z -= currentCameraSpeed * dt;
+            }
+        }
+
+        int zoomSensitivity = 5; // reduce the sensibility of the panning to mouse movements
+        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+        {
+            if(dy < -zoomSensitivity){
+                fov += 1;
+            }
+            else if (dy > zoomSensitivity){
+                fov -= 1;
+            }
+
+            // Correct angle if needed
+            if (fov < 1.0f){
+                fov = 1.0f;
+            }
+            if (fov > 45.0f){
+                fov = 45.0f; 
+            }
+        }
         
+        // @TODO 4 - Calculate mouse motion dx and dy
+        //         - Update camera horizontal and vertical angle
+       
         // Convert to spherical coordinates
         const float cameraAngularSpeed = 60.0f;
-        cameraHorizontalAngle -= dx * cameraAngularSpeed * dt;
-        cameraVerticalAngle   -= dy * cameraAngularSpeed * dt;
+
+        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS){
+            cameraHorizontalAngle -= dx * cameraAngularSpeed * dt;
+            cameraVerticalAngle   -= dy * cameraAngularSpeed * dt;
+        }
         
         // Clamp vertical angle to [-85, 85] degrees
         cameraVerticalAngle = std::max(-85.0f, std::min(85.0f, cameraVerticalAngle));
@@ -879,7 +911,6 @@ int main(int argc, char*argv[])
         vec3 cameraSideVector = glm::cross(cameraLookAt, vec3(0.0f, 1.0f, 0.0f));
         
         glm::normalize(cameraSideVector);
-         */
         
         // @TODO 5 = use camera lookat and side vectors to update positions with ASDW
         // adjust code below
@@ -912,6 +943,14 @@ int main(int argc, char*argv[])
 
         GLuint viewMatrixLocation = glGetUniformLocation(shaderProgram, "viewMatrix");
         glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &viewMatrix[0][0]);
+
+        // Set projection matrix for shader
+        mat4 projectionMatrix = glm::perspective(glm::radians(fov),            // field of view in degrees
+                                                 800.0f / 600.0f,  // aspect ratio
+                                                 0.01f, 100.0f);   // near and far (near > 0)
+        
+        GLuint projectionMatrixLocation = glGetUniformLocation(shaderProgram, "projectionMatrix");
+        glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &projectionMatrix[0][0]);
         
         
         // @TODO 2 - Shoot Projectiles

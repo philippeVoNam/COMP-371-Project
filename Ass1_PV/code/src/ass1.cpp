@@ -523,6 +523,8 @@ int main(int argc, char*argv[])
     float scaleLetterID = 1.0f;
 
     GLuint worldMatrixLocation = glGetUniformLocation(shaderProgram, "worldMatrix");
+    float worldAngleX = 0.0f;
+    float worldAngleY = 0.0f;
 
     int vbo;
 
@@ -585,73 +587,89 @@ int main(int argc, char*argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // Draw geometry
-        vec3 whiteVect = vec3(1.0f, 1.0f, 1.0f);
-        int w_vbo = createVertexBufferObject(false, whiteVect);
-        glBindBuffer(GL_ARRAY_BUFFER, w_vbo); // FIXME -> not sure if this is good
-
-        // Draw grid
+        // Make Grid
         int gridSize = 128;
+        std::vector<mat4> og_gridMatrixList;
         for (int i=0; i<(gridSize/2); ++i)
         {
-            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + (i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+            mat4 zAxisLineMatrix = translate(mat4(1.0f), vec3(0.0f + (i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
 
             // turn 90
-            groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+            mat4 xAxisLineMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
+            
+            og_gridMatrixList.push_back(zAxisLineMatrix);
+            og_gridMatrixList.push_back(xAxisLineMatrix);
         }
 
         for (int i=0; i<(gridSize/2); ++i)
         {
-            mat4 groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f + (-i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+            mat4 zAxisLineMatrix = translate(mat4(1.0f), vec3(0.0f + (-i * gridUnit), 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
 
             // turn 90
-            groundWorldMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (-i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
-            glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &groundWorldMatrix[0][0]);
-            glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+            mat4 xAxisLineMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f + (-i * gridUnit))) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.01f, 0.01f, gridUnit * gridSize));
+        
+            og_gridMatrixList.push_back(zAxisLineMatrix);
+            og_gridMatrixList.push_back(xAxisLineMatrix);
         }
         
-        // Draw Axis
-        // Draw geometry color
+        // Make Axis
         float lengthAxis = gridUnit * 7;
 
-        vec3 greenVect = vec3(0.0f, 1.0f, 0.0f);
-        vbo = createVertexBufferObject(false, greenVect);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
-        
-        mat4 yAxisMatrix = translate(mat4(1.0f), vec3(0.0f , lengthAxis/2, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &yAxisMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
+        mat4 og_yAxisMatrix = translate(mat4(1.0f), vec3(0.0f , lengthAxis/2, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
+        mat4 og_xAxisMatrix = translate(mat4(1.0f), vec3(lengthAxis/2 , 0.0f, 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
+        mat4 og_zAxisMatrix = translate(mat4(1.0f), vec3(0.0f , 0.0f, lengthAxis/2)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
 
-        // Draw geometry color
-        vec3 redVect = vec3(1.0f, 0.0f, 0.0f);
-        vbo = createVertexBufferObject(false, redVect);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
-
-        mat4 xAxisMatrix = translate(mat4(1.0f), vec3(lengthAxis/2 , 0.0f, 0.0f)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &xAxisMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-
-        // Draw geometry color
-        vec3 blueVect = vec3(0.0f, 0.0f, 1.0f);
-        vbo = createVertexBufferObject(false, blueVect);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
-
-        mat4 zAxisMatrix = translate(mat4(1.0f), vec3(0.0f , 0.0f, lengthAxis/2)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
-        glUniformMatrix4fv(worldMatrixLocation, 1, GL_FALSE, &zAxisMatrix[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices, starting at index 0
-
-        // Scale/Move/Rotate Letter/ID
+        // ### Apply Input Transformations ###
+        // Scale/Move/Rotate individual Letter/ID
         mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
         mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[focusLetterID].x,list_letter_id[focusLetterID].y,list_letter_id[focusLetterID].z));
         mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[focusLetterID].angle), glm::vec3(0.0f, 1.0f, 0.0f));
         list_letter_id[focusLetterID].m_letter_id_matrix = apply_transform_2_models(list_letter_id[focusLetterID].og_letter_id_matrix, moveMatrix * rotateMatrix * scaleMatrix); // we need to apply the transform on the original matrix of the model (if use on the m_letter_id_matrix -> effect will be compounded)
 
+        // World Rotations
+        mat4 worldXRotateMatrix = rotate(glm::mat4(1.0f), glm::radians(worldAngleX), glm::vec3(1.0f, 0.0f, 0.0f));
+        mat4 worldYRotateMatrix = rotate(glm::mat4(1.0f), glm::radians(worldAngleY), glm::vec3(0.0f, 1.0f, 0.0f));
+        mat4 worldRotateMatrix = worldXRotateMatrix * worldYRotateMatrix;
+        
+        // grid rotations
+        std::vector< mat4 > gridMatrixList = apply_transform_2_model(og_gridMatrixList, worldRotateMatrix);
+
+        // axis rotations
+        mat4 yAxisMatrix = worldRotateMatrix * og_yAxisMatrix;
+        mat4 xAxisMatrix = worldRotateMatrix * og_xAxisMatrix;
+        mat4 zAxisMatrix = worldRotateMatrix * og_zAxisMatrix;
+
+        // model letter/id rotations
+        for(int i = 0; i < numLetterID; i++){
+            list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix);
+        }
+
+        // ### DRAWING ###
+        // Draw Grid
+        vec3 whiteVect = vec3(1.0f, 1.0f, 1.0f);
+        int w_vbo = createVertexBufferObject(false, whiteVect);
+        glBindBuffer(GL_ARRAY_BUFFER, w_vbo); // FIXME -> not sure if this is good
+        draw_model(gridMatrixList, worldMatrixLocation);
+        
+        // Draw Axis
+        vec3 greenVect = vec3(0.0f, 1.0f, 0.0f);
+        vbo = createVertexBufferObject(false, greenVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+        draw_matrix(yAxisMatrix, worldMatrixLocation);
+
+        vec3 redVect = vec3(1.0f, 0.0f, 0.0f);
+        vbo = createVertexBufferObject(false, redVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+        draw_matrix(xAxisMatrix, worldMatrixLocation);
+
+        vec3 blueVect = vec3(0.0f, 0.0f, 1.0f);
+        vbo = createVertexBufferObject(false, blueVect);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
+
+        draw_matrix(zAxisMatrix, worldMatrixLocation);
+        
         //// Draw the Letter/ID list
         vbo = createVertexBufferObject(true, dummyVect);
         glBindBuffer(GL_ARRAY_BUFFER, vbo); // FIXME -> not sure if this is good
@@ -744,6 +762,58 @@ int main(int argc, char*argv[])
 
             list_letter_id[focusLetterID].angle = angle;
         }
+        
+        // World Rotation
+        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) // move camera to the left
+        {
+            float angle = worldAngleX + 1.0f;
+
+            if(angle > 360.0f){
+                angle = 360.0f;
+            }
+
+            worldAngleX = angle;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) // move camera to the right
+        {
+            float angle = worldAngleX - 1.0f;
+
+            if(angle < 0.0f){
+                angle = 0.0f;
+            }
+
+            worldAngleX = angle;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) // move camera up
+        {
+            float angle = worldAngleY + 1.0f;
+
+            if(angle > 360.0f){
+                angle = 360.0f;
+            }
+
+            worldAngleY = angle;
+        }
+        
+        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) // move camera down
+        {
+            float angle = worldAngleY - 1.0f;
+
+            if(angle < 0.0f){
+                angle = 0.0f;
+            }
+
+            worldAngleY = angle;
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_HOME) == GLFW_PRESS) // move camera down
+        {
+            worldAngleX = 0.0f;
+            worldAngleY = 0.0f;
+        }
+
         // This was solution for Lab02 - Moving camera exercise
         // We'll change this to be a first or third person camera
         bool fastCam = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS;
@@ -792,25 +862,25 @@ int main(int argc, char*argv[])
         
         // @TODO 5 = use camera lookat and side vectors to update positions with ASDW
         // adjust code below
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) // move camera to the left
-        {
-            cameraPosition.x -= currentCameraSpeed * dt;
-        }
+        //if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) // move camera to the left
+        //{
+            //cameraPosition.x -= currentCameraSpeed * dt;
+        //}
         
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) // move camera to the right
-        {
-            cameraPosition.x += currentCameraSpeed * dt;
-        }
+        //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) // move camera to the right
+        //{
+            //cameraPosition.x += currentCameraSpeed * dt;
+        //}
         
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) // move camera up
-        {
-            cameraPosition.z += currentCameraSpeed * dt;
-        }
+        //if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) // move camera up
+        //{
+            //cameraPosition.z += currentCameraSpeed * dt;
+        //}
         
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) // move camera down
-        {
-            cameraPosition.z -= currentCameraSpeed * dt;
-        }
+        //if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) // move camera down
+        //{
+            //cameraPosition.z -= currentCameraSpeed * dt;
+        //}
 
       
         // TODO 6

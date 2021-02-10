@@ -534,6 +534,7 @@ int main(int argc, char*argv[])
     std::vector<mat4> matrixListTransformed;
     std::vector<std::vector< mat4 >> letter_id_matrix;
     mat4 translateMatrix;
+    mat4 rotateMatrixInit;
 
     int segP[] = {1,1,0,0,1,1,1};
     matrixList = seven_seg_model(worldMatrixLocation, segP);
@@ -562,12 +563,39 @@ int main(int argc, char*argv[])
 
     // List of Letter/ID
     std::vector< LetterIDModel > list_letter_id;
-    for(int i = 0; i < numLetterID; i++){
-        translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 5 * i), (gridUnit * 0), (gridUnit * 0)));
-        std::vector<std::vector< mat4 >> new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix);
-        LetterIDModel model = LetterIDModel(new_letter_id_matrix);
-        list_letter_id.push_back(model);
-    }
+    int circleDistance = 50;
+
+    // 12 o clock letter/id
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 0), (gridUnit * 0), (gridUnit * circleDistance)));
+    std::vector<std::vector< mat4 >> new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix);
+    LetterIDModel model = LetterIDModel(new_letter_id_matrix);
+    list_letter_id.push_back(model);
+
+    // 6 o clock letter/id
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 0), (gridUnit * 0), (gridUnit * -circleDistance)));
+    new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix);
+    model = LetterIDModel(new_letter_id_matrix);
+    list_letter_id.push_back(model);
+
+    // 3 o clock letter/id
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * circleDistance), (gridUnit * 0), (gridUnit * 0)));
+    rotateMatrixInit = rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix * rotateMatrixInit);
+    model = LetterIDModel(new_letter_id_matrix);
+    list_letter_id.push_back(model);
+
+    // 9 o clock letter/id
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * -circleDistance), (gridUnit * 0), (gridUnit * 0)));
+    rotateMatrixInit = rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix * rotateMatrixInit);
+    model = LetterIDModel(new_letter_id_matrix);
+    list_letter_id.push_back(model);
+
+    // middle letter/id
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 0), (gridUnit * 0), (gridUnit * 0)));
+    new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix);
+    model = LetterIDModel(new_letter_id_matrix);
+    list_letter_id.push_back(model);
     
     // Entering Main Loop
     while(!glfwWindowShouldClose(window))
@@ -615,10 +643,6 @@ int main(int argc, char*argv[])
         mat4 og_zAxisMatrix = translate(mat4(1.0f), vec3(0.0f , 0.0f, lengthAxis/2)) * rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * scale(mat4(1.0f), vec3(0.05f, lengthAxis, 0.05f));
 
         // ### Apply Input Transformations ###
-        // Scale/Move/Rotate individual Letter/ID
-        mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale, list_letter_id[focusLetterID].scale));
-        mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[focusLetterID].x,list_letter_id[focusLetterID].y,list_letter_id[focusLetterID].z));
-        mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[focusLetterID].angle), glm::vec3(0.0f, 1.0f, 0.0f));
 
         // World Rotations
         mat4 worldXRotateMatrix = rotate(glm::mat4(1.0f), glm::radians(worldAngleX), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -635,13 +659,19 @@ int main(int argc, char*argv[])
 
         // model letter/id rotations
         for(int i = 0; i < numLetterID; i++){
-            if(i == focusLetterID){
-                // if the focused model -> do the additional transformations
-                list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
-            }
-            else{
-                list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix);
-            }
+            //if(i == focusLetterID){
+                //// if the focused model -> do the additional transformations
+                //list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
+            //}
+            //else{
+                //list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].m_letter_id_matrix, worldRotateMatrix);
+            //}
+            // Scale/Move/Rotate individual Letter/ID
+            mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[i].scale, list_letter_id[i].scale, list_letter_id[i].scale));
+            mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[i].x,list_letter_id[i].y,list_letter_id[i].z));
+            mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[i].angle), glm::vec3(0.0f, 1.0f, 0.0f));
+
+            list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
         }
 
         // ### DRAWING ###
@@ -756,8 +786,8 @@ int main(int argc, char*argv[])
         {
             float angle = list_letter_id[focusLetterID].angle - 1.0f;
 
-            if(angle < 0.0f){
-                angle = 0.0f;
+            if(angle < -360.0f){
+                angle = -360.0f;
             }
 
             list_letter_id[focusLetterID].angle = angle;
@@ -779,8 +809,8 @@ int main(int argc, char*argv[])
         {
             float angle = worldAngleX - 1.0f;
 
-            if(angle < 0.0f){
-                angle = 0.0f;
+            if(angle < -360.0f){
+                angle = -360.0f;
             }
 
             worldAngleX = angle;
@@ -801,8 +831,8 @@ int main(int argc, char*argv[])
         {
             float angle = worldAngleY - 1.0f;
 
-            if(angle < 0.0f){
-                angle = 0.0f;
+            if(angle < -360.0f){
+                angle = -360.0f;
             }
 
             worldAngleY = angle;
@@ -886,7 +916,7 @@ int main(int argc, char*argv[])
         //         - Update camera horizontal and vertical angle
        
         // Convert to spherical coordinates
-        const float cameraAngularSpeed = 60.0f;
+        const float cameraAngularSpeed = 40.0f;
 
         if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS){
             cameraHorizontalAngle -= dx * cameraAngularSpeed * dt;

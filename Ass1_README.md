@@ -10,8 +10,8 @@
 - [O] Hierarchical modelling
 - [X] window 1024x768 + 2x buffering support
 - [X] enable hidden surface removal
-- [ ] clean up code of any lab3 stuff
-- [ ] clean up dir
+- [X] clean up code of any lab3 stuff
+- [X] clean up dir
 - [ ] mention heavily inspired by lab3
 - [ ] write up the README.md install instructions
 - [ ] email professor and jonathan

@@ -1,103 +1,46 @@
-# Lab 3 - Basic Shooter
+# COMP-371 Project : Philippe Vo (27759908)
 
-## Build Instructions
+## What is it about ?
+- This is a project for the COMP-371 class (Computer Graphics). It consists of a 3 part assignments 
+that will help us understand better how to program computer graphics.
 
-### Command Line
+### 1st Assignment
+- The first assignment has us make a simulation environement where there is a grid and a xyz axis in the middle.
+- Around the middle, there are 4 models and 1 model in the middle. These models consists of the first and last letter of our first
+name and student ID.
+- Using keyboard and mouse inputs, the user is able to manipulate the models, camera and overall environement.
 
-1. Download and Install CMake
-2. Open a terminal
-3. Run cmake:
+## Mouse and Keyboard Inputs
+- 1-5                         : select models
+- u                           : scale up models
+- j                           : scale down models
+- a-w-s-d                     : move model over the xz axis
+- q-e                         : rotate models relative to y axis
+- arrow-keys                  : rotate the environement relative to x and y axis
+- home-key                    : reset the environement to initial angle
+- p-l-t                       : change rendering method (point / line / triangle)
+- right-mouse drag            : pan camera
+- left-mouse drag up and down : zoom camera
+- middle-mouse drag           : tilt camera
 
+## Running Instructions (assuming using a Linux system)
+- make your way into the build directory and run :
 ```
-cd <source_folder>
-cmake -S . -B <build_folder>
-cmake --build <build_folder> --target install
+./ass1
 ```
+## If not using Linux or do not have the build folder
+- please refer to "compile_instructions.md"
 
-To generate an Xcode project from the command line use:
+## Credits
+### 1st Assignment
+- The first assignment borrows heavily from the "COMP-371 class" Lab03. Some code was taken from there.
 
-```
-cd <source_folder>
-cmake -S . -B <build_folder> -G Xcode
-cmake --build <build_folder> --target install
-```
+## Resources used
+- https://learnopengl.com/Getting-started/OpenGL
 
+## Known Bugs and differences from assignment given
+### 1st Assignment
+- q/e inputs to rotate the models are not working as expected:
+  - instead of rotating in place, they are rotating relative to the world origin (y-axis)
 
-**NOTE:** In the case of cmake the `<source_folder>` is the topmost folder with
-a CMakeLists.txt file.
-
-**NOTE:** The `<build_folder>` can be anything but is usually just named `build`.
-
-
-### CMake GUI
-
-You can use the CMake GUI to configure and generate the Visual Studio Project.
-
-1. Download and Install CMake
-2. Open the CMake GUI
-3. Set the `Where is the source code:` field to the source folder
-4. Set the `Where to build the binaries:` field to different location (e.g.: source_folder/build)
-5. Click Configure
-6. Select the project generator (this will be the project file that compiles program)
-7. Click Generate
-
-#### Windows
-
-Once the project is created you can build the **ALL_BUILD** project followed by
-building the **INSTALL** project.
-
-#### Xcode
-
-Once the project is created you can build the **ALL_BUILD** target followed by
-the **INSTALL** target. 
-
-#### Unix Make File
-
-In the terminal:
-
-```
-cd <build_folder>
-make install
-```
-
-
-## Running
-
-Once built and installed, all the relevant files will be in the **dist** folder
-at the top level of the source folder.
-
-### Linux/macOS
-
-In the terminal type:
-
-```
-./lab03
-```
-
-### Windows
-
-Click on the **lab03.exe** from the File Explorer.
-
-## References
-
-Good place to learn OpenGL
-https://www.learnopengl.com
-
-Official OpenGL 4 Reference Documentation
-https://www.khronos.org/registry/OpenGL-Refpages/gl4/
-
-Official OpenGL Wiki
-https://www.khronos.org/opengl/wiki/
-
-Easy to Navigate OpenGL Function Documentation
-http://docs.gl/
-
-GLM Documentation
-https://glm.g-truc.net/0.9.9/index.html
-
-GLFW Documentation
-https://www.glfw.org/
-
-Good place for advanced graphics theory
-https://www.scratchapixel.com/
-
+- q/e used to rotate instead of a/d

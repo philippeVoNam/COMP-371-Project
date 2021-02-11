@@ -24,13 +24,7 @@ name and student ID.
 - left-mouse drag up and down : zoom camera
 - middle-mouse drag           : tilt camera
 ```
-
-## Running Instructions (assuming using a Linux system)
-- make your way into the build directory and run :
-```
-./ass1
-```
-## If not using Linux or do not have the build folder
+## Compile and Run Instructions (taken from the Lab03 readme.md instructions)
 - please refer to "compile_instructions.md"
 
 ## Credits

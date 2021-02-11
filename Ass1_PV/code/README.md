@@ -11,6 +11,7 @@ name and student ID.
 - Using keyboard and mouse inputs, the user is able to manipulate the models, camera and overall environement.
 
 ## Mouse and Keyboard Inputs
+```
 - 1-5                         : select models
 - u                           : scale up models
 - j                           : scale down models
@@ -22,6 +23,7 @@ name and student ID.
 - right-mouse drag            : pan camera
 - left-mouse drag up and down : zoom camera
 - middle-mouse drag           : tilt camera
+```
 
 ## Running Instructions (assuming using a Linux system)
 - make your way into the build directory and run :

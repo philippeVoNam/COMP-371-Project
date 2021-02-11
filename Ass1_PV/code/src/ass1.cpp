@@ -564,6 +564,7 @@ int main(int argc, char*argv[])
     // List of Letter/ID
     std::vector< LetterIDModel > list_letter_id;
     int circleDistance = 50;
+    int offsetDistance = 15; // to correct when we rotate the 3 and 6 o clock models, to be relatively centered with regard to x-axis
 
     // 12 o clock letter/id
     translateMatrix = translate(mat4(1.0f), vec3((gridUnit * 0), (gridUnit * 0), (gridUnit * circleDistance)));
@@ -578,14 +579,14 @@ int main(int argc, char*argv[])
     list_letter_id.push_back(model);
 
     // 3 o clock letter/id
-    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * circleDistance), (gridUnit * 0), (gridUnit * 0)));
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * circleDistance), (gridUnit * 0), (gridUnit * -offsetDistance)));
     rotateMatrixInit = rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix * rotateMatrixInit);
     model = LetterIDModel(new_letter_id_matrix);
     list_letter_id.push_back(model);
 
     // 9 o clock letter/id
-    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * -circleDistance), (gridUnit * 0), (gridUnit * 0)));
+    translateMatrix = translate(mat4(1.0f), vec3((gridUnit * -circleDistance), (gridUnit * 0), (gridUnit * offsetDistance)));
     rotateMatrixInit = rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     new_letter_id_matrix = apply_transform_2_models(letter_id_matrix, translateMatrix * rotateMatrixInit);
     model = LetterIDModel(new_letter_id_matrix);
@@ -659,19 +660,12 @@ int main(int argc, char*argv[])
 
         // model letter/id rotations
         for(int i = 0; i < numLetterID; i++){
-            //if(i == focusLetterID){
-                //// if the focused model -> do the additional transformations
-                //list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
-            //}
-            //else{
-                //list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].m_letter_id_matrix, worldRotateMatrix);
-            //}
             // Scale/Move/Rotate individual Letter/ID
             mat4 scaleMatrix = scale(mat4(1.0f), vec3(list_letter_id[i].scale, list_letter_id[i].scale, list_letter_id[i].scale));
             mat4 moveMatrix = translate(mat4(1.0f), vec3(list_letter_id[i].x,list_letter_id[i].y,list_letter_id[i].z));
             mat4 rotateMatrix = rotate(glm::mat4(1.0f), glm::radians(list_letter_id[i].angle), glm::vec3(0.0f, 1.0f, 0.0f));
 
-            list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * rotateMatrix * scaleMatrix);
+            list_letter_id[i].m_letter_id_matrix = apply_transform_2_models(list_letter_id[i].og_letter_id_matrix, worldRotateMatrix * moveMatrix * scaleMatrix * rotateMatrix );
         }
 
         // ### DRAWING ###

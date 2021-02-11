@@ -1,3 +1,0 @@
-/home/namv/Documents/School/Winter-2021/COMP-371/Project/build/_deps/thirdparty-glfw-subbuild/CMakeFiles/rebuild_cache.dir
-/home/namv/Documents/School/Winter-2021/COMP-371/Project/build/_deps/thirdparty-glfw-subbuild/CMakeFiles/edit_cache.dir
-/home/namv/Documents/School/Winter-2021/COMP-371/Project/build/_deps/thirdparty-glfw-subbuild/CMakeFiles/thirdparty-glfw-populate.dir

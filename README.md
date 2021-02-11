@@ -8,6 +8,10 @@ that will help us understand better how to program computer graphics.
 - The first assignment has us make a simulation environement where there is a grid and a xyz axis in the middle.
 - Around the middle, there are 4 models and 1 model in the middle. These models consists of the first and last letter of our first
 name and student ID.
+
+- The models are made using the notion of "seven segment display". (seven_segment_display())
+![seven segment display](seven.png)
+
 - Using keyboard and mouse inputs, the user is able to manipulate the models, camera and overall environement.
 
 ## Mouse and Keyboard Inputs

@@ -1,0 +1,3 @@
+repository='external project URL'
+module='/home/namv/Documents/School/Winter-2021/COMP-371/Project/thirdparty/glew-2.1.0.zip'
+tag=''
